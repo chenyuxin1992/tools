@@ -170,13 +170,18 @@ export default {
       }
     },
     onNodeDblClickCamera (event) {
+      console.log(event)
       this.canvas.clear()
       if (event.tp === 'preset') {
         this.getDlConfig(event.id)
 
-        if (this.substation !== event.substation) {
-          this.substation = event.substation
-          this.initPatrolPointTree()
+        // if (this.substation !== event.substation) {
+        //   this.substation = event.substation
+        //   this.initPatrolPointTree()
+        // }
+        if (this.patrolpoint !== event.patrolpoint) {
+          this.patrolpoint = event.patrolpoint
+          this.$refs.patrolpoint.getDlData(this.patrolpoint)
         }
         this.title = event.name
       }
@@ -515,7 +520,8 @@ export default {
       calculateOptions: [],
       groupIdOptions: [],
       preset: null,
-      substation: null
+      substation: null,
+      patrolpoint: null
     }
   },
   mounted () {

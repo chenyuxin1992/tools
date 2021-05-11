@@ -59,6 +59,38 @@ export default {
         }
       )
     },
+    getDlData (patrolpoint) {
+      this.getBaseData(
+        'patrolpoint',
+        {
+          id: patrolpoint
+        },
+        (response) => {
+          if (response.data) {
+            let point = response.data.results
+            this.getBaseData(
+              'device',
+              {
+                id: point[0].device
+              },
+              (response) => {
+                if (response.data) {
+                  let objects = response.data.results
+                  let data = []
+                  objects.forEach(object => {
+                    object.text = object.name
+                    object.tp = 'device'
+                    object.state = 'closed'
+                    data.push(object)
+                  })
+                  this.nodes = data
+                }
+              }
+            )
+          }
+        }
+      )
+    },
     searchTable () {
       this.params.name__contains = this.keyword
     },
