@@ -189,7 +189,7 @@ export default {
           },
           (response) => {
             if (response.data.success) {
-              this.imgPath = 'https://' + location.hostname + ':8443/tools/' + 'dlpath/ivsdata/recognizewithdl/' + this.preset + '/scene.jpg'
+              this.imgPath = 'https://' + location.hostname + ':8443/html/tools/' + 'dlpath/ivsdata/recognizewithdl/' + this.preset + '/scene.jpg'
               setTimeout(() => {
                 this.imgPath = null
               }, 3000)

@@ -92,7 +92,7 @@ export default {
     getDlDef () {
       this.request(
         'GET',
-        'tools/dlpath/dldef.json',
+        'html/tools/dlpath/dldef.json',
         {},
         (response) => {
           var data = response.data
@@ -117,7 +117,7 @@ export default {
     getDlConfig (preset) {
       this.request(
         'GET',
-        'tools/dlpath/ivsdata/recognizewithdl/' + preset + '/config.json?ts=' + (new Date()).getTime(),
+        'html/tools/dlpath/ivsdata/recognizewithdl/' + preset + '/config.json?ts=' + (new Date()).getTime(),
         {},
         (response) => {
           this.jsonToCanvas(response.data)
@@ -126,7 +126,7 @@ export default {
         },
         () => {
           this.preset = preset
-          var url = 'tools/dlpath/ivsdata/recognizewithdl/' + this.preset + '/scene.jpg?ts=' + (new Date()).getTime()
+          var url = 'html/tools/dlpath/ivsdata/recognizewithdl/' + this.preset + '/scene.jpg?ts=' + (new Date()).getTime()
           this.setBackgroundImage(url)
         }
       )
