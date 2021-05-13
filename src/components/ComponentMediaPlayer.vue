@@ -117,7 +117,7 @@ export default {
       if (this.prop.devidx) {
         this.request(
           'GET',
-          'media/index/api/ptzControl',
+          'media/api/v2/ptzControl',
           {
             idx: this.prop.devidx,
             no: this.prop.no,
@@ -135,7 +135,7 @@ export default {
           // 海康3D-Position
           this.request(
             'GET',
-            'media/index/api/ptzControl',
+            'media/api/v2/ptzControl',
             {
               idx: this.prop.devidx,
               no: this.prop.no,
@@ -178,7 +178,7 @@ export default {
 
           this.request(
             'GET',
-            'media/index/api/ptzControl',
+            'media/api/v2/ptzControl',
             {
               idx: this.prop.devidx,
               no: this.prop.no,
@@ -198,7 +198,7 @@ export default {
       if (this.prop.devidx) {
         this.request(
           'GET',
-          'media/index/api/getptzpos',
+          'media/api/v2/getptzpos',
           {
             idx: this.prop.devidx,
             no: this.prop.no
@@ -213,7 +213,7 @@ export default {
       if (this.prop.devidx) {
         this.request(
           'GET',
-          'media/index/api/setptzpos',
+          'media/api/v2/setptzpos',
           {
             idx: this.prop.devidx,
             no: this.prop.no,

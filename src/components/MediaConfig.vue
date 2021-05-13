@@ -111,7 +111,7 @@ export default {
     getData () {
       this.request(
         'GET',
-        'media/index/api/devicelist',
+        'media/api/v2/devicelist',
         {},
         (response) => {
           console.log(response)
@@ -143,7 +143,7 @@ export default {
       if (!event.children) {
         this.request(
           'GET',
-          'media/index/api/channellist',
+          'media/api/v2/channellist',
           {
             devidx: event.id
           },
@@ -215,7 +215,7 @@ export default {
       }
       this.request(
         'GET',
-        'media/index/api/modify' + this.table,
+        'media/api/v2/modify' + this.table,
         params,
         (response) => {
           if (response.data.success === 0) {
@@ -245,7 +245,7 @@ export default {
       }
       this.request(
         'GET',
-        'media/index/api/adddevice',
+        'media/api/v2/adddevice',
         params,
         (response) => {
           if (response.data.success === 0) {
@@ -286,7 +286,7 @@ export default {
             }
             this.request(
               'GET',
-              'media/index/api/addchannel',
+              'media/api/v2/addchannel',
               params,
               (response) => {
                 if (response.data.success === 0) {
@@ -308,7 +308,7 @@ export default {
           if (r) {
             this.request(
               'GET',
-              'media/index/api/deldevice',
+              'media/api/v2/deldevice',
               {
                 idx: this.prop.idx
               },
@@ -332,7 +332,7 @@ export default {
           if (r) {
             this.request(
               'GET',
-              'media/index/api/delchannel',
+              'media/api/v2/delchannel',
               {
                 devidx: this.prop.devidx,
                 channelno: this.prop.no

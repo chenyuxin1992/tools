@@ -135,7 +135,7 @@ export default {
       if (!event.children) {
         this.request(
           'GET',
-          'media/index/api/channellist',
+          'media/api/v2/channellist',
           {
             devidx: event.id
           },
