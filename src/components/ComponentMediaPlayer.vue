@@ -236,8 +236,8 @@ export default {
       this.prop.no = no
 
       if (flvjs.isSupported()) {
-        // let url = 'wss://100.100.100.102:8443/media/' + devidx + '/' + no + '.flv'
-        let url = 'wss://' + location.hostname + ':8443/media/' + devidx + '/' + no + '.flv'
+        let url = 'wss://100.100.100.102:8443/media/' + devidx + '/' + no + '.flv'
+        //let url = 'wss://' + location.hostname + ':8443/media/' + devidx + '/' + no + '.flv'
         if (this.player != null) {
           this.player.unload()
           this.player.detachMediaElement()

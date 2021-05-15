@@ -96,6 +96,15 @@
           <FormField v-if="prop.audio!=null" label="音频类型:">
             <ComboBox v-model="prop.audio" :plain="true" :data="audioTypeOptions" :editable="false"></ComboBox>
           </FormField>
+          <FormField v-if="prop.videoType!=null" label="视频编码类型:">
+            <ComboBox v-model="prop.videoType" :plain="true" :data="videoTypes" :editable="false"></ComboBox>
+          </FormField>
+          <FormField v-if="prop.streamType!=null" label="取流方式:">
+            <ComboBox v-model="prop.streamType" :plain="true" :data="streamTypes" :editable="false"></ComboBox>
+          </FormField>
+          <FormField v-if="prop.rtspUrl!=null" label="网络取流地址:">
+            <TextBox v-model="prop.rtspUrl"></TextBox>
+          </FormField>
         </Form>
       </LayoutPanel>
     </Layout>
@@ -232,7 +241,7 @@ export default {
       // user 登陆设备用户名，最大长度32，非空
       // pass 登陆设备密码，最大长度32，非空
       // devip 设备IP地址
-      // type 设备类型，目前只支持1 海康，2 大华两种
+      // type 设备类型，目前只支持1 海康，2 大华两种 0 虚拟设备
       // port 登陆设备端口号
       let params = {
         idx: -1,
@@ -267,6 +276,9 @@ export default {
       // byneed 0或1，是否按需推拉流，0：通道推流后不再关断，可提高通道响应流能力，但占用资源，1：按需推拉流，当用户访问流，自动开始流服务，没有用户使用该流时，自动关闭，释放资源。
       // audio 音频类型，根据摄像头设置的音频格式定义，整数，2：AAC，3：G711a，4：G711u，其它值无效，不转发音频
       // ptz 控制属性 0:不可控 1:可控
+      // videoType 视频编码类型  0：H264，1：H265
+      // streamType：取流方式0：SDK，1：网络（rtsp/rtmp等）
+      // rtspUrl：网络取流地址
       this.$messager.prompt({
         title: '新增通道',
         msg: '请输入通道号',
@@ -282,7 +294,10 @@ export default {
               hls: 1,
               byneed: 1,
               audio: 0,
-              ptz: 1
+              ptz: 1,
+              videoType: 0,
+              streamType: 0,
+              rtspUrl: '',
             }
             this.request(
               'GET',
@@ -378,7 +393,10 @@ export default {
           hls: event.data['enable_hls'],
           byneed: event.data['playOnNeed'],
           audio: event.data['audioType'],
-          ptz: event.data['ptzType']
+          ptz: event.data['ptzType'],
+          videoType: event.data['videoType'],
+          streamType: event.data['streamType'],
+          rtspUrl: event.data['rtspUrl'],
         }
       }
     },
@@ -422,7 +440,7 @@ export default {
       loading: false,
       deviceOptions: [],
       deviceTypeOptions: [
-        {'text': '未定义', 'value': 0},
+        {'text': '虚拟设备', 'value': 0},
         {'text': '海康', 'value': 1},
         {'text': '大华', 'value': 2}
       ],
@@ -435,7 +453,15 @@ export default {
       ptzTypeOptions: [
         {'text': '不可控', 'value': 0},
         {'text': '可控', 'value': 1}
-      ]
+      ],
+      videoTypes: [
+        {'text': 'H264', 'value': 0},
+        {'text': 'H265', 'value': 1}
+      ],
+      streamTypes: [
+        {'text': 'SDK', 'value': 0},
+        {'text': '网络（rtsp、rtmp）', 'value': 1}
+      ],
     }
   },
   mounted () {
